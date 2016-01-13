@@ -9,7 +9,7 @@ This code provides the interface for several variations of the experiment. For i
 
 All the users information and results are stored in a database.
 
-\* With the dots challenge, the participant is shown a pattern of dots on a grid very briefly before each question. The participants must retain the pattern, answer the question and then replace the pattern on an empty grid.
+\* *With the dots challenge, the participant is shown a pattern of dots on a grid very briefly before each question. The participants must retain the pattern, answer the question and then replace the pattern on an empty grid.*
 
 
 # The research
