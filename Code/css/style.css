@@ -1,0 +1,15 @@
+.row-top-margin {
+	margin-top: 30px;
+}
+
+.row-bottom-margin {
+	margin-bottom: 30px;
+}
+
+.important-text {
+	color: red;
+}
+
+table {
+	margin: 0 auto; /* or margin: 0 auto 0 auto */
+}

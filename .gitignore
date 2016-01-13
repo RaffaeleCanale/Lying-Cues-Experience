@@ -1,0 +1,22 @@
+# Ignore all files without extensions
+*
+!*.*
+!*/
+
+
+# Ignore images and videos
+Subjects
+
+# Others
+Others
+Code/.uploadDates.txt
+
+# OS generated files
+.directory
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
