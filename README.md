@@ -19,7 +19,7 @@ The interface is available in English and French. **TODO: And greek?**
 
 This experiment is part of a research trying to define the nature of our ability to detect lies. In fact, by observing the participants accuracy and, more importantly, their response time, this experiment tries to define whether our natural ability to dectect lies is a central (ie. active, trained, slow) process or a modular (ie. passive, innate, fast) process.
 
-Learn more about the experiment and results **TODO: Link to report**
+Learn more about the experiment and results on the following [report](/Reports/canale.pdf).
 
 
 # Setup
@@ -27,14 +27,16 @@ Learn more about the experiment and results **TODO: Link to report**
 To setup the experiment on a server, follow the instructions **TODO: Link to documentation**
 
 
-# Todos
 
-Index path for the variation (EN + images) is not complete
-Merge videos and images experience somehow
-
-
-## Some features
+### Presentation of some features
 
 * All content (images or videos) are preloaded and the start of the experiment, ensuring no delay through the actual survey.
 * Every subject is presented several times to measure accuracy (typically, 4 repetitions).
 * The subjects are presented in a pseudo random order. More specifically, the order is random but yet ensures that no two same subjects follow each other.
+* Session tracking: This prevents the users tries to access a page in the wrong order or tries to restart the survey by changing the URL or refreshing the page.
+
+
+### Todos
+
+Index path for the variation (EN + images) is not complete
+Merge videos and images experience somehow
