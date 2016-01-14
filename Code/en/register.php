@@ -1,8 +1,9 @@
+<?php include('../register_header.php') ?>
 <!DOCTYPE HTML> 
 <html>
 <head>
       <meta charset="UTF-8">
-      <title>Étude SHS :: Détection de mensonges</title>
+      <title>SHS Survey :: Detecting lying faces</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
       <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,15 +14,16 @@
 
             <div class="row row-top-margin text-center">
                   <div class="col-md-12">
-                        <h1>Bienvenu(e) à notre expérience</h1>
+                        <h1>Welcome to our survey</h1>
                   </div>
             </div>
 
             <div class="row row-top-margin">
                   <div class="col-md-8 col-md-offset-2">
                         <p class="lead">
-                              Pour participer à l'expérience, nous vous demandons de fournir quelques informations.<br>
-                              Notez que ces informations restent confidentielles et sont utilisées uniquement à des fins académiques.<br>
+                              To initiate the survey, you have to provide below the required information.<br>
+                              Note that all this information is kept confidential,
+                              and is only used in an aggregate way for academic purposes only.<br>
                         </p>
                   </div>
             </div>
@@ -29,46 +31,45 @@
             <form class="form-horizontal row-top-margin" action="training.php" method="post">
                   <fieldset>
                         <div class="form-group">
-                              <label for="age" class="col-sm-2 control-label">Âge</label>
+                              <label for="age" class="col-sm-2 control-label">Age</label>
                               <div class="col-sm-10">
                                     <input type="number" name="age" min="18" max="99" value="23" class="form-control" id="age">
                               </div>
                         </div>
 
                         <div class="form-group">
-                              <label for="gender" class="col-sm-2 control-label">Genre</label>
+                              <label for="gender" class="col-sm-2 control-label">Gender</label>
                               <div class="col-sm-10">
                                     <label class="radio-inline">
-                                          <input type="radio" name="gender" id="gender" value="male" checked> Homme
+                                          <input type="radio" name="gender" id="gender" value="male" checked> Male
                                     </label>
                                     <label class="radio-inline">
-                                          <input type="radio" name="gender" id="gender" value="female"> Femme
+                                          <input type="radio" name="gender" id="gender" value="female"> Female
                                     </label>
                               </div>
                         </div>
 
                         <div class="form-group">
-                              <label for="degree" class="col-sm-2 control-label">Diplôme</label>
+                              <label for="degree" class="col-sm-2 control-label">Degree</label>
                               <div class="col-sm-10">
                                     <select class="form-control" name="degree">
-                                          <option value="none">Aucun</option>
-                                          <option value="baccalaureate">Baccalauréat</option>
+                                          <option value="none">None</option>
+                                          <option value="baccalaureate">Baccalaureate</option>
                                           <option value="bachelor">Bachelor</option>
                                           <option value="masters">Masters</option>
                                           <option value="phd">PhD</option>
-                                          <option value="other">Autre</option>
+                                          <option value="other">Other</option>
                                     </select>
                               </div>
                         </div>
 
                         <div class="form-group">
-                              <label for="origin_country" class="col-sm-2 control-label">Pays d'origine</label>
+                              <label for="origin_country" class="col-sm-2 control-label">Country of origin</label>
                               <div class="col-sm-10">
                                     <select class="form-control" id="countries" name="origin_country">
                                           <?php
                                           $countries = fopen("countries.txt","r");
-                                          while($line = fgets($countries,1024))
-                                          {
+                                          while($line = fgets($countries,1024)) {
                                                 $line = explode(';',$line);
                                                 if ($line[1]=='CH') echo '<option value='.$line[1].' selected="selected">'.$line[2].'</option>';
                                                 else echo '<option value='.$line[1].'>'.$line[2].'</option>';
@@ -79,9 +80,9 @@
                         </div>
 
                         <div class="form-group">
-                              <label for="degree" class="col-sm-2 control-label">Pays de résidence</label>
+                              <label for="degree" class="col-sm-2 control-label">Country of residence</label>
                               <div class="col-sm-10">
-                                    <select class="form-control" id="countries" name="residence_country">                                          
+                                    <select class="form-control" id="countries" name="residence_country">
                                           <?php
                                           $countries = fopen("countries.txt","r");
                                           while($line = fgets($countries,1024))
@@ -97,7 +98,7 @@
 
                         <div class="form-group">
                               <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" value="Submit" class="btn btn-primary">Confirmer</button>
+                                    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
                               </div>
                         </div>
                   </fieldset>

@@ -1,5 +1,5 @@
 <?php
-include('../generate_playlist.php');
+include('../survey_header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,8 @@ include('../generate_playlist.php');
       MSG_EXIT_BREAK='Continue';
       MSG_TIMED_OUT='You were too slow<br>Please answer as spontaneously as possible';
       MSG_CONFIRM='Confirm';
+
+      MSG_EXIT_WARNING='Warning, by leaving this page, you\'ll quit the experiment and all your results will be lost!';
 
       enterState(states.LOADING_IMAGES);
     }

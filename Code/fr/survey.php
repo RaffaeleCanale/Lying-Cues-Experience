@@ -1,5 +1,5 @@
 <?php
-include('../generate_playlist.php');
+include('../survey_header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +34,8 @@ include('../generate_playlist.php');
       MSG_EXIT_BREAK='Continuer';
       MSG_TIMED_OUT='Vous étiez trop lent<br>Veuillez répondre de façon spontanée';
       MSG_CONFIRM='Confirmer';
+
+      MSG_EXIT_WARNING='Attention, en quittant cette page, vous quitterez l\'expérience et tous vos résultats seront perdus!';
 
 
       enterState(states.LOADING_IMAGES);

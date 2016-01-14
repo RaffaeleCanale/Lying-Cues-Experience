@@ -1,29 +1,4 @@
-<?php
-/*  
-What this file does:
-  - Insert a new user into the database
-  - Store its ID in a session ($_SESSION['userId'])
-  - Redirect to the training images 
-*/
-session_start();
-
-include('../db_connection.php'); // Creates a connection $conn
-include('../constants.php');
-
-$sql = "INSERT INTO Users (age, gender, degree, origin_country, residence_country, show_dots) VALUES ('". join("', '",$_POST). "', " . (SHOW_DOTS?"true":"false") . ")";
-
-if ($conn->query($sql) === TRUE) {
-  $last_id = $conn->insert_id;
-  $_SESSION["userId"] = $last_id;
-} else {  
-  die('An error occurred, please try again.<br>If this problem persists, contact a webmaster at: <a href="mailto:shs@altervista.org">shs@altervista.org</a>');
-}
-
-$conn->close();
-
-$_SESSION["training"] = TRUE;
-
-?>
+<?php include('../training_header.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">

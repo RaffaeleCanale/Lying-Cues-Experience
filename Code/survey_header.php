@@ -15,10 +15,14 @@ eg. If there are 2 number of dots (3 or 4), and 4 repetitions, two of those
 images will be associated with 3 dots and two with 4.
 */
 
+session_start();
+
+include('session_tracker.php');
+
 include('db_connection.php'); // Creates a connection $conn
 include('constants.php');
 
-session_start();
+
 
 /** 
 Finds a random index in the array such that neither (index-1) nor (index)
@@ -105,13 +109,13 @@ function choose_random($array) {
 if ($_SESSION["training"]) {
   $sql = "SELECT id, path FROM Training";
   $repetitions=RPT_TRAINING;
-  $nextUrl="intro.php";
+  $nextUrl="ready.php";
   $nb_breaks=NB_BREAKS_TRAINING;
 
 } else {  
   $sql = "SELECT id, path FROM Images";
   $repetitions=RPT_SURVEY;
-  $nextUrl=END_PAGE;
+  $nextUrl="end.php";
   $nb_breaks=NB_BREAKS_SURVEY;
 
 }
@@ -170,4 +174,7 @@ for ($i = 1; $i < $size; $i++) {
 }
 
 $conn->close();
+
+startExperience();
+
 ?>

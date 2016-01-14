@@ -25,3 +25,16 @@ Learn more about the experiment and results **TODO: Link to report**
 # Setup
 
 To setup the experiment on a server, follow the instructions **TODO: Link to documentation**
+
+
+# Todos
+
+Index path for the variation (EN + images) is not complete
+Merge videos and images experience somehow
+
+
+## Some features
+
+* All content (images or videos) are preloaded and the start of the experiment, ensuring no delay through the actual survey.
+* Every subject is presented several times to measure accuracy (typically, 4 repetitions).
+* The subjects are presented in a pseudo random order. More specifically, the order is random but yet ensures that no two same subjects follow each other.

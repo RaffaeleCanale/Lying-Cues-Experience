@@ -20,10 +20,6 @@ include('../constants.php');
 </head>
 
 
-
-
-
-
 <body>
 
 
@@ -62,7 +58,7 @@ include('../constants.php');
 
       <div class="row row-top-margin row-bottom-margin">
             <div class="col-md-12 text-center">
-                  <button class="btn btn-primary btn-lg" id="take_button" onclick='window.location.href = "new_survey.php";'>Débuter expérience</button>
+                  <button class="btn btn-primary btn-lg" id="take_button" onclick='window.location.href = "register.php";'>Débuter expérience</button>
             </div>
       </div>
 

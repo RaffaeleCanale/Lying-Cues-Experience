@@ -10,33 +10,33 @@ var states = {
 	ERROR_OCCURRED: 8	
 };
 
-var playlist; /* Contains the list of tuple (id, image) of the playlist */
+var playlist; // Contains the list of tuples of the playlist. Each element of the list contains (id, subject, dots)
 
-var counter = 0; /* Current image index */
-var current; /* Contains the current tuple (current.id is the id, current.path is the image itself) */
+var counter = 0; // Current image index
+var current; // Contains the current tuple (current.id is the id, current.path is the image itself, current.dots is the associated dots pattern)
 var currentState;
 
-var playStartTime;
-var nextBreak;
-var imageTimeout; /* timeout object used when showing an image */
+var questionStartTime;
+var nextBreakIndex; // Index at which the next break will be taken
+var imageTimeout; // timeout object used when showing an image
 
-/* User variables for each question */
+// Response variables for each question
 var userResponse;
 var userResponseTime;
 var dotsReference;
 var dotsResponse;
 
 
-/* Constant variables initialized by survey.php */
+// Constants initialized by survey.php
 var USER_ID;
-var NEXT_URL;	/* Url to display after all the images are shown */
+var NEXT_URL;	// Url to display after all the images are shown
 var BREAK_INTERVAL;
 var DOTS_DURATION;
 var IMAGE_DURATION;
 var CROSS_DURATION;
 var SHOW_DOTS;
 
-/* LANG CONSTANTS */
+// LANG CONSTANTS
 var MSG_WAIT;
 var MSG_READY;
 var MSG_LYING;
@@ -45,6 +45,12 @@ var MSG_BREAK;
 var MSG_EXIT_BREAK;
 var MSG_TIMED_OUT;
 var MSG_CONFIRM;
+var MSG_EXIT_WARNING;
+
+// Prints a warning if the user tries to leave
+window.onbeforeunload = function () {
+	return MSG_EXIT_WARNING;	
+}
 
 function enterState(nextState) {
 	// console.log("[STATE]", nextState);
@@ -52,7 +58,7 @@ function enterState(nextState) {
 	exitState(currentState);
 	currentState = nextState;
 
-	// Variables
+	// Elements that may change with a change of state
 	var message = document.getElementById('message');
 	var content = document.getElementById('content');
 	var f_key = document.getElementById('f_key');
@@ -70,10 +76,10 @@ function enterState(nextState) {
 		case states.LOADING_IMAGES: {
 			message.innerHTML = MSG_WAIT;
 
-			nextBreak = BREAK_INTERVAL; /* Initialization */
+			nextBreakIndex = BREAK_INTERVAL; // Initialization
 			$('#progress').attr('aria-valuemax', playlist.length);
 
-			/* Start loading images */
+			// Start loading images
 			loadNextImage(0, []);
 		}
 		break;
@@ -96,13 +102,17 @@ function enterState(nextState) {
 		break;
 
 		case states.SHOWING_FIXATION_CROSS: {
-			message.innerHTML = MSG_LYING;
-			f_key.style.visibility="visible";
-			j_key.style.visibility="visible";
+			if (CROSS_DURATION > 0) {
+				message.innerHTML = MSG_LYING;
+				f_key.style.visibility="visible";
+				j_key.style.visibility="visible";
 
-			setImage(content, "../img/cross.png");
+				setImage(content, "../img/cross.png");
 
-			setTimeout(function() { enterState(states.WAITING_USER_TO_ANSWER); }, CROSS_DURATION);
+				setTimeout(function() { enterState(states.WAITING_USER_TO_ANSWER); }, CROSS_DURATION);
+			} else {
+				enterState(states.WAITING_USER_TO_ANSWER);
+			}
 		}
 		break;
 
@@ -113,7 +123,7 @@ function enterState(nextState) {
 
 			setImage(content, URL.createObjectURL(current.path));
 
-			playStartTime = new Date().getTime();
+			questionStartTime = new Date().getTime();
 
 			imageTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, IMAGE_DURATION);
 		}
@@ -142,7 +152,7 @@ function enterState(nextState) {
 			confirm_button.innerHTML=MSG_EXIT_BREAK;
 			$('#confirm').attr('class', "btn");
 
-			playStartTime = new Date().getTime();
+			questionStartTime = new Date().getTime();
 		}
 		break;
 
@@ -171,7 +181,7 @@ function exitState(state) {
 		break;
 
 		case states.TAKING_BREAK: {
-			var breakTime = (new Date().getTime() - playStartTime);
+			var breakTime = (new Date().getTime() - questionStartTime);
 
 			insertBreakTime(breakTime);
 
@@ -272,11 +282,11 @@ function showNextOrStop() {
 	incrementProgress();
 
 	if (playlist.length == 0) {  /* End reached */
-		window.location.href = NEXT_URL;
+		setProperlyFinished();
 
 	} else {
-		if (counter > nextBreak) {  /* Break reached */
-			nextBreak = nextBreak + BREAK_INTERVAL;
+		if (counter > nextBreakIndex) {  /* Break reached */
+			nextBreakIndex = nextBreakIndex + BREAK_INTERVAL;
 			enterState(states.TAKING_BREAK);
 
 		} else {			
@@ -291,7 +301,7 @@ function showNext() {
 }
 
 function saveUserAnswer(isLying) {
-	userResponseTime = (new Date().getTime() - playStartTime);
+	userResponseTime = (new Date().getTime() - questionStartTime);
 	userResponse = isLying;
 }
 
@@ -326,37 +336,35 @@ function setImage(content, src) {
 
 
 function loadNextImage(index, images_buffer_map) {
-	/**
-		Method description:
+	/*
+	Method description:
 
-		The 'playlist' variables describes the list of all images to show (already in random order and containing repetitions)
+	The 'playlist' variables describes the list of all images to show (already in random order and containing repetitions)
 
-		At first, the 'playlist' variable is a list of tuples containing:
-			[ image_id , image_path , dots ]
+	At first, the 'playlist' variable is a list of tuples containing:
+		[ image_id , image_path , dots ]
 
-		The goal of this method is to preload the images so that 'playlist' becomes a list of tuples of:
-			[ image_id , "actual image data" , dots ]
+	The goal of this method is to preload (download) the images so that 'playlist' becomes a list of tuples of:
+		[ image_id , "actual image data" , dots ]
 
-		
+	
 
-		This method loads one image at the specified index. Then, if the needed, 
-		this method recursively calls itslef with index+1 until the end is reached.
+	This method loads one image at the specified index. Then, if needed, 
+	this method recursively calls itslef with index+1 until the end is reached.
 
-		In order to avoid downloading the same image several times, 
-		the 'images_buffer_map' acts as a temporary buffer. It is a map [ image_id --> "actual image data" ]
-		that contains all the already loaded images
-
-		*/
+	In order to avoid downloading the same image several times (recall that the playlist contains repetitions), 
+	the 'images_buffer_map' acts as a temporary buffer. It is a map [ image_id --> "actual image data" ]
+	that contains all the already loaded images
+	*/
 
 
 
 	if (index == playlist.length) { // All images are loaded	
 		$('#progress').attr('class', "progress-bar progress-bar-success");
 
-		/* Delayed for 1 second for smoother animations... */
+		// Delayed for 1 second for smoother animations...
 		setTimeout(function() {
 			console.log('Loaded', index, 'images');
-
 			resetProgress();
 			showNext();
 		}, 1000);
@@ -367,7 +375,7 @@ function loadNextImage(index, images_buffer_map) {
 	var tuple = playlist[index];
 
 	var image_data = images_buffer_map[tuple.id];
-	if (image_data != null) { /* Image already on buffer */
+	if (image_data != null) { // Image already on buffer
 		tuple.path = image_data;
 
 		incrementProgress();
@@ -375,7 +383,7 @@ function loadNextImage(index, images_buffer_map) {
 		return;
 	}
 
-	/* Download image */
+	// Download image
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '../images/'.concat(tuple.path), true);
 	xhr.responseType = 'blob';
@@ -389,6 +397,8 @@ function loadNextImage(index, images_buffer_map) {
 
 			images_buffer_map[tuple.id] = myBlob;  /* put in buffer */
 			loadNextImage(index+1, images_buffer_map);
+		} else {
+			error('Cannot fetch image');
 		}
 	}
 	xhr.send();
@@ -463,4 +473,20 @@ function insertResponse() {
 
 	function emptyDotsResponse() {
 		return ['-','-','-','-','-','-','-','-','-'];
+	}
+
+	function setProperlyFinished() {
+		jQuery.ajax({
+			type: "POST",
+			url: '../set_properly_finished.php',
+
+			success: function (obj, textstatus) {
+				window.onbeforeunload = null;
+				window.location.href = NEXT_URL;
+			},
+
+    	error: function (blob, status, error) { // That means an error in php code, should not happen!
+    		console.log("[CRITICAL] " + status + " / " + error);
+    	}
+    });
 	}

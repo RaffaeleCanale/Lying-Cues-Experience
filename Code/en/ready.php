@@ -1,8 +1,6 @@
-<?php
+<?php 
+include('../ready_header.php'); 
 include('../constants.php');
-
-session_start();
-$_SESSION["training"] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
