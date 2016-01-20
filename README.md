@@ -6,7 +6,7 @@ This experiment is past of a research lead by a group of researchers at EPFL and
 
 # The interface
 
-This code provides the interface for several variations of the experiment. For instance, the experiment may present subject using images or videos, it is also possible to add a *dots challenge*\* before each presented subject in order to induce a cognitive load. Many other settings are available (eg. breaks during the experiment, repetitions of the subjects, etc...), see **TODO: Link documentation**
+This code provides the interface for several variations of the experiment. For instance, the experiment may present subject using images or videos, it is also possible to add a *dots challenge*\* before each presented subject in order to induce a cognitive load. Many other settings are available (eg. breaks during the experiment, repetitions of the subjects, etc...), see [the documentation](/Documentation/Constants Definitions.txt)
 
 All the users information and results are stored in a database.
 
