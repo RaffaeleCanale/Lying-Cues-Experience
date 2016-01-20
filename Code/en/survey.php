@@ -34,7 +34,7 @@ include('../survey_header.php');
 
       MSG_EXIT_WARNING='Warning, by leaving this page, you\'ll quit the experiment and all your results will be lost!';
 
-      enterState(states.LOADING_IMAGES);
+      enterState(states.LOADING_VIDEOS);
     }
 
   </script>

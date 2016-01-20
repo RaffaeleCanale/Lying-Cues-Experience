@@ -1,7 +1,7 @@
 <?php
 // Read the documentation (Constants Definitions.txt) for more information on these constants.
 
-define("TEST_MODE", TRUE); 
+define("TEST_MODE", FALSE); 
 define("SHOW_DOTS", FALSE); 
 define("DOTS_DURATION", TEST_MODE ? 1 : 900);
 define("DOTS_COUNTS", "2;4");

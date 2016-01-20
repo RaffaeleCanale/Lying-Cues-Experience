@@ -1,6 +1,4 @@
-<?php
-include('../survey_header.php');
-?>
+<?php include('../survey_header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +26,7 @@ include('../survey_header.php');
 
       MSG_WAIT='Veuillez patienter pendant le chargement des images...';
       MSG_READY='Préparez vos doigts sur les touches <b>F</b> et <b>J</b><br>Appuyez sur ESPACE quand vous êtes prêt';
-      MSG_LYING='Est-ce un menteur?';
+      MSG_LYING='Est-ce que cette personne mentait?';
       MSG_DOTS='Replacez les points';
       MSG_BREAK='Prenez une pause de 5 minutes<br>Quand vous êtes prêt à reprendre, cliquez sur le bouton ci-dessous';
       MSG_EXIT_BREAK='Continuer';
@@ -63,25 +61,18 @@ include('../survey_header.php');
   </div>
 
   <div class="row row-top-margin">
-    <div onclick="keyPress(102);" class="col-xs-2">
-      <div class="lead text-center" style='visibility:hidden' id='f_key'><img width='70' src="../img/key_f.png" class="img-responsive center-block"><br>Cette personne ment</div>
-    </div> 
-
-    <div class="col-xs-8">
-      <p class="lead text-center" id='message'></p>
-
-      <div id="content" class="lead text-center">
-
-
-      </div>
+    <div onclick="keyPress(102);" class="col-md-2">
+      <div class="lead text-center" style='visibility:hidden' id='f_key'><img width='70' src="../img/key_f.png"><br> Cette personne ment</div>
     </div>
-    <div onclick="keyPress(106);" class="col-xs-2">
-      <div class="lead text-center" style='visibility:hidden' id='j_key'><img width='70' src="../img/key_j.png" class="img-responsive center-block"><br>Cette personne ne ment <b>pas</b></div>
-    </div>
-  </div>
 
-  <div class="form-group text-center" style="margin-top: 1cm;">    
-    <button id="confirm" class="btn btn-primary" style="visibility:hidden" onclick="buttonPressed()"></button>
+    <div onclick="keyPress(32);" class="col-md-8">
+      <p class="lead text-center" id='message'>Veuillez patienter durant le chargement des vidéos... </p>
+      <video id="video" autoplay muted style="margin-left: auto; margin-right: auto; display: block; width: 12cm;" onended="videoEnded(false);" oncontextmenu="event.preventDefault();"></video>
+    </div>
+    
+    <div onclick="keyPress(106);" class="col-md-2">
+      <div class="lead text-center" style='visibility:hidden' id='j_key'><img width='70' src="../img/key_j.png"><br> Cette personne ne ment <b>pas</b></div>
+    </div>
   </div>
 
 </div>
