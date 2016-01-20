@@ -406,87 +406,83 @@ function loadNextImage(index, images_buffer_map) {
 
 
 function insertResponse() {
-	/*
-		Insert a user response to the database
-		*/
-		if (!SHOW_DOTS) {
-			dotsReference = emptyDotsResponse();
-			dotsResponse = emptyDotsResponse();
-		}
+	// Insert a user response to the database
+	if (!SHOW_DOTS) {
+		dotsReference = emptyDotsResponse();
+		dotsResponse = emptyDotsResponse();
+	}
 
-		jQuery.ajax({
-			type: "POST",
-			url: '../submit_answer.php',
-			dataType: 'json',
-			data: {
-				userId: USER_ID,		
-				imageId: current.id,
-				userResponse: userResponse,
-				userResponseTime: userResponseTime,
-				dotsReference: dotsReference.join(''),
-				dotsResponse: dotsResponse.join('')
-			},
+	jQuery.ajax({
+		type: "POST",
+		url: '../submit_answer.php',
+		dataType: 'json',
+		data: {
+			userId: USER_ID,		
+			imageId: current.id,
+			userResponse: userResponse,
+			userResponseTime: userResponseTime,
+			dotsReference: dotsReference.join(''),
+			dotsResponse: dotsResponse.join('')
+		},
 
-			success: function (obj, textstatus) {
-				if ('error' in obj) {
-					error(obj.error);
-				}
-			},
+		success: function (obj, textstatus) {
+			if ('error' in obj) {
+				error(obj.error);
+			}
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
-	}
+}
 
-	function insertBreakTime(breakTime) {
-	/*
-		update the 'break_time' field in the corresponding entry of the 'Users' table
-		*/
+function insertBreakTime(breakTime) {
+	// update the 'break_time' field in the corresponding entry of the 'Users' table
 
-		jQuery.ajax({
-			type: "POST",
-			url: '../update_break_time.php',
-			dataType: 'json',
-			data: {
-				userId: USER_ID,		
-				breakTime: breakTime
-			},
+	jQuery.ajax({
+		type: "POST",
+		url: '../update_break_time.php',
+		dataType: 'json',
+		data: {
+			userId: USER_ID,		
+			breakTime: breakTime
+		},
 
-			success: function (obj, textstatus) {
-				if ('error' in obj) {
-					error(obj.error);
-				}
-			},
+		success: function (obj, textstatus) {
+			if ('error' in obj) {
+				error(obj.error);
+			}
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
+}
+
+function removeChildren(node) {
+	while (node.firstChild) {
+		node.removeChild(node.firstChild);
 	}
+}
 
-	function removeChildren(node) {
-		while (node.firstChild) {
-			node.removeChild(node.firstChild);
-		}
-	}
+function emptyDotsResponse() {
+	return ['-','-','-','-','-','-','-','-','-'];
+}
 
-	function emptyDotsResponse() {
-		return ['-','-','-','-','-','-','-','-','-'];
-	}
+function setProperlyFinished() {
+	jQuery.ajax({
+		type: "POST",
+		url: '../set_properly_finished.php',
 
-	function setProperlyFinished() {
-		jQuery.ajax({
-			type: "POST",
-			url: '../set_properly_finished.php',
-
-			success: function (obj, textstatus) {
-				window.onbeforeunload = null;
-				window.location.href = NEXT_URL;
-			},
+		success: function (obj, textstatus) {
+			window.onbeforeunload = null;
+			window.location.href = NEXT_URL;
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
-	}
+}
