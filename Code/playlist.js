@@ -416,7 +416,7 @@ function insertResponse() {
 
 		jQuery.ajax({
 			type: "POST",
-			url: '../submitAnswer.php',
+			url: '../submit_answer.php',
 			dataType: 'json',
 			data: {
 				userId: USER_ID,		
@@ -446,7 +446,7 @@ function insertResponse() {
 
 		jQuery.ajax({
 			type: "POST",
-			url: '../updateBreakTime.php',
+			url: '../update_break_time.php',
 			dataType: 'json',
 			data: {
 				userId: USER_ID,		

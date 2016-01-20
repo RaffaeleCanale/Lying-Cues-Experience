@@ -27,7 +27,6 @@
           echo '<p class="lead">Before each image, you will be shown a pattern of dots for a very short period of time. Pay good attention to the placement of the dots because you will be asked to replace them after you answer the question.</p>';          
         }
         ?>
-
         <p class="lead">
           Before starting the actual experiment, you will be shown a set of example images so that you can get familiar with the system. Your answers to these examples will not be registered.
         </p>

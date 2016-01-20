@@ -42,17 +42,12 @@ include('../constants.php');
 
       <div class="row row-top-margin">
             <div class="col-md-8 col-md-offset-2">
-                  <p class="lead">Cher(ère) participant(e),</p>
-                                  
-                  <p class="lead">Nous sommes un groupe de recherche de l’École Polytechnique Fédérale de Lausanne (EPFL) et de l’Université de Lausanne. Nous réalisons une recherche en collaboration avec l’Institut de Psychologie à l’Université de Lausanne, en Suisse.</p>
-
-                  <p class="lead">Dans cette étude (durée d’environ <?php echo EXPERIENCE_DURATION ?> minutes), notre but est d’identifier les marqueurs faciaux de mensonge, ainsi que leurs combinaisons.</p>
-
+                  <p class="lead">Cher(ère) participant(e),</p>                                  
+                  <p class="lead">Nous sommes un groupe de recherche de l'École Polytechnique Fédérale de Lausanne (EPFL) et de l'Université de Lausanne. Nous réalisons une recherche en collaboration avec l'Institut de Psychologie à l'Université de Lausanne, en Suisse.</p>
+                  <p class="lead">Dans cette étude (durée d'environ <?php echo EXPERIENCE_DURATION ?> minutes), notre but est d'identifier les marqueurs faciaux de mensonge, ainsi que leurs combinaisons.</p>
                   <p class="lead">Nous souhaiterions que vous regardiez attentivement chacun des visages et que vous indiquiez aussi rapidement que possible si la personne vous semble mentir ou non.</p>
-
-                  <p class="lead">Nous aimerions rappeler que votre participation est volontaire, et que vous pouvez arrêter l’expérience à tout moment. Vos données seront traitées de façon anonyme, c’est-à-dire que nous n’enregistrerons que votre âge, sexe, années d’éducation et pays d’origine. Si vous poursuivez l’expérience, nous prendrons ceci comme votre consentement pour l’utilisation des données, dans un but de recherche uniquement. Si vous avez d’autres questions, veuillez s’il-vous-plaît nous contacter à l’adresse suivante : <a href="mailto:mathieu.arminjon@unige.ch">mathieu.arminjon@unige.ch</a></p>
-
-                  <p class="lead">Cliquez sur le bouton ci-dessous pour débuter l’expérience.</p>
+                  <p class="lead">Nous aimerions rappeler que votre participation est volontaire, et que vous pouvez arrêter l'expérience à tout moment. Vos données seront traitées de façon anonyme, c'est-à-dire que nous n'enregistrerons que votre âge, sexe, années d'éducation et pays d'origine. Si vous poursuivez l'expérience, nous prendrons ceci comme votre consentement pour l'utilisation des données, dans un but de recherche uniquement. Si vous avez d'autres questions, veuillez s'il-vous-plaît nous contacter à l'adresse suivante : <a href="mailto:mathieu.arminjon@unige.ch">mathieu.arminjon@unige.ch</a></p>
+                  <p class="lead">Cliquez sur le bouton ci-dessous pour débuter l'expérience.</p>
             </div>
       </div>
 
