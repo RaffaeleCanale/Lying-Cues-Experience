@@ -1,22 +1,21 @@
-1) SELECT VIDEOS
+###1. SELECT VIDEOS
 
-	Prepare theses 3 directories:
-		- 'lies'
-		- 'truths'
-		- 'training'
-	And fill them with the corresponding videos.
-	Note that each videos in 'training' will be shown once whereas each videos in 'lies' or 'truths' will be shown 4 times.
+Firstly, create theses 3 directories:
+	- Lies
+	- Truths
+	- Training
+Then, place all your videos within these 3 directories according to their type. They do not need to be renamed.
+Note that the experiment will use all the videos placed here.
 
-2) RUN SCRIPT 'prepare'
+###2. RUN SCRIPT 'generate_list.sh'
 
-	Run the bash script 'prepare' (with no arguments). 
-	This script will create:
+Usage:
+`./generate_list.sh` or `./generate_list.sh --no-transcode`
 
-	- A directory 'All' containing all the renamed images to put on the server
-	- A file 'insert.sql' containing the SQL code to insert in the DB
-	- A 'NameMap.txt' file that keeps track of the file names (not necessary, but just in case)
+This script will create the directory `Upload` that will contain all the videos as they should be uploaded to the server.
+The script will also create the file `VideoNameMap.txt`. Do *not* erase that file as it will be needed later.
 
-3) COMPRESS THE VIDEOS
+###Note on transcoding
 
-	If you have 'avconv' installed, just run the 'transcode' script (no arguments) that will transcode all the videos in 'All' into a light, web-friendly format (might take a few minutes).
-	All the transcoded videos will be in the 'all_transcoded' directory. Use theses for the upload.
+The script will also transcode every video into a light, web-friendly format using `avconv`.
+If you don't have `avconv` installed, you can skip transcoding by using the `--no-transcode` option.
