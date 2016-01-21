@@ -1,6 +1,4 @@
-<?php
-include('../survey_header.php');
-?>
+<?php include('../survey_header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

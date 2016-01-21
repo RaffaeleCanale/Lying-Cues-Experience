@@ -19,7 +19,6 @@ include('../constants.php');
 
 </head>
 
-
 <body>
 
 
