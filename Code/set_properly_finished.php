@@ -11,7 +11,7 @@ if ( $_SESSION['training'] ) {
 include('db_connection.php'); // Creates a connection $conn
 include('constants.php');
 
-$sql = "UPDATE Users SET properly_finished=true WHERE id=" . $_SESSION["userId"];
+$sql = 'UPDATE '.TABLE_USERS.' SET properly_finished=true WHERE id=' . $_SESSION['userId'];
 if ($conn->query($sql) === FALSE) {
     
 }

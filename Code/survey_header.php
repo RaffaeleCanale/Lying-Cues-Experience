@@ -1,18 +1,18 @@
 <?php
 /**
-Generate the list of images to display.
+Generate the list of videos to display.
 
-This will automatically choose the images (and number of repetitions) 
+This will automatically choose the videos (and number of repetitions) 
 according to training or testing.
 
-The list of images is shuffled, yet, it ensures no repetitions ever
-occur of two same images.
+The list of videos is shuffled, yet, it ensures no repetitions ever
+occur of two same videos.
 
-Each image is attributed with a number of dots. The number of dots for
-each image is chosen such that, for each unique image, the number of dots
+Each video is attributed with a number of dots. The number of dots for
+each video is chosen such that, for each unique video, the number of dots
 is fairly distributed amongst its repetetions.
 eg. If there are 2 number of dots (3 or 4), and 4 repetitions, two of those
-images will be associated with 3 dots and two with 4.
+videos will be associated with 3 dots and two with 4.
 */
 
 session_start();
@@ -107,13 +107,13 @@ function choose_random($array) {
 
 
 if ($_SESSION["training"]) {
-  $sql = "SELECT id, path FROM Training";
+  $sql = "SELECT id, path FROM " . TABLE_TRAINING;
   $repetitions=RPT_TRAINING;
   $nextUrl="ready.php";
   $nb_breaks=NB_BREAKS_TRAINING;
 
 } else {  
-  $sql = "SELECT id, path FROM Images";
+  $sql = "SELECT id, path FROM " . TABLE_SUBJECTS;
   $repetitions=RPT_SURVEY;
   $nextUrl="end.php";
   $nb_breaks=NB_BREAKS_SURVEY;

@@ -12,6 +12,8 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
+return;
+
 if ( !array_key_exists('userId', $_SESSION) || $_SESSION['surveying'] ) {
 	
 	session_destroy(); 

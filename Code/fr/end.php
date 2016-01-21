@@ -39,6 +39,7 @@ include('../constants.php');
       <div class="col-md-8 col-md-offset-2">
         <p class="lead">Merci d'avoir participé à notre expérience. Vos réponses ont été correctement enregistrées.</p>            
         <p class="lead">Pour plus d'informations sur notre étude, <a href="more.php">cliquez ici</a>.</p>
+        <p class="lead important-text">Votre score général est de <?php echo "$score_friendly" ?>.</p>
       </div>
     </div>
 

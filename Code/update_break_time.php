@@ -10,7 +10,7 @@ $response = array();
 if (!$_SESSION["training"]) {
     include('db_connection.php');
 
-    $sql = "UPDATE Users SET break_time='".$_POST['breakTime']."' WHERE id=" . $_SESSION["userId"];
+    $sql = "UPDATE ".TABLE_USERS." SET break_time='".$_POST['breakTime']."' WHERE id=" . $_SESSION["userId"];
     
     if ($conn->query($sql) === FALSE) {
       $response['error'] = "Insert failed: " . $conn->error;

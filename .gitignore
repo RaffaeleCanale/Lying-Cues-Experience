@@ -5,11 +5,17 @@
 
 
 # Ignore images and videos
-Subjects
+Videos/Training
+Videos/Truths
+Videos/Lies
+Videos/Upload
+Videos/VideoNamesMap.txt
 
 # Others
+SQL/database.sql
 Others
 Code/.uploadDates.txt
+Images_tmp
 
 # OS generated files
 .directory

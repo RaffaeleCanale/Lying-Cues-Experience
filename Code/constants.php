@@ -10,8 +10,13 @@ define("RPT_SURVEY", 4);
 define("NB_BREAKS_TRAINING", 0);
 define("NB_BREAKS_SURVEY", SHOW_DOTS ? 1 : 0);
 define("FIXATION_CROSS_DURATION", TEST_MODE ? 0 : 500);
-define("IMAGE_DURATION", 15000);
+define("VIDEO_DURATION", 15000);
 define("EXPERIENCE_DURATION", SHOW_DOTS ? 30 : 30);
 define("END_REDIRECT_DELAY", 0);
+
+define('TABLE_USERS', 'Users_Videos');
+define('TABLE_ANSWERS', 'Answers_Videos');
+define('TABLE_SUBJECTS', 'Subjects_Videos');
+define('TABLE_TRAINING', 'Training_Videos');
 
 ?>

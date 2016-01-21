@@ -1,5 +1,5 @@
 var states = {
-	LOADING_IMAGES: 0,
+	LOADING_VIDEOS: 0,
 	WAITING_USER_TO_START: 1,
 	SHOWING_DOTS: 2,
 	SHOWING_FIXATION_CROSS: 3,
@@ -12,13 +12,13 @@ var states = {
 
 var playlist; // Contains the list of tuples of the playlist. Each element of the list contains (id, subject, dots)
 
-var counter = 0; // Current image index
-var current; // Contains the current tuple (current.id is the id, current.path is the image itself, current.dots is the associated dots pattern)
+var counter = 0; // Current video index
+var current; // Contains the current tuple (current.id is the id, current.path is the video itself, current.dots is the associated dots pattern)
 var currentState;
 
 var questionStartTime;
 var nextBreakIndex; // Index at which the next break will be taken
-var imageTimeout; // timeout object used when showing an image
+var videoTimeout; // timeout object used when showing an video
 
 // Response variables for each question
 var userResponse;
@@ -29,10 +29,10 @@ var dotsResponse;
 
 // Constants initialized by survey.php
 var USER_ID;
-var NEXT_URL;	// Url to display after all the images are shown
+var NEXT_URL;	// Url to display after all the videos are shown
 var BREAK_INTERVAL;
 var DOTS_DURATION;
-var IMAGE_DURATION;
+var VIDEO_DURATION;
 var CROSS_DURATION;
 var SHOW_DOTS;
 
@@ -53,7 +53,7 @@ window.onbeforeunload = function () {
 }
 
 function enterState(nextState) {
-	// console.log("[STATE]", nextState);
+	console.log("[STATE]", nextState);
 
 	exitState(currentState);
 	currentState = nextState;
@@ -73,14 +73,14 @@ function enterState(nextState) {
 	
 
 	switch(currentState) {
-		case states.LOADING_IMAGES: {
+		case states.LOADING_VIDEOS: {
 			message.innerHTML = MSG_WAIT;
 
 			nextBreakIndex = BREAK_INTERVAL; // Initialization
 			$('#progress').attr('aria-valuemax', playlist.length);
 
-			// Start loading images
-			loadNextImage(0, []);
+			// Start loading videos
+			loadNextVideo(0, []);
 		}
 		break;
 
@@ -121,11 +121,11 @@ function enterState(nextState) {
 			f_key.style.visibility="visible";
 			j_key.style.visibility="visible";
 
-			setImage(content, URL.createObjectURL(current.path));
+			setVideo(content, URL.createObjectURL(current.path));
 
 			questionStartTime = new Date().getTime();
 
-			imageTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, IMAGE_DURATION);
+			videoTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, VIDEO_DURATION);
 		}
 		break;
 
@@ -176,7 +176,7 @@ function enterState(nextState) {
 function exitState(state) {
 	switch(state) {
 		case states.WAITING_USER_TO_ANSWER: {
-			clearTimeout(imageTimeout);
+			clearTimeout(videoTimeout);
 		}
 		break;
 
@@ -334,37 +334,56 @@ function setImage(content, src) {
 	content.appendChild(image);
 }
 
+function setVideo(content, src) {
+	var video = document.createElement('video');
+	video.className = "img-responsive center-block";
+	video.src = src;
+	video.muted = true;
+	video.style = "margin-left: auto; margin-right: auto; display: block; width: 12cm;";
+	video.onended = function() {
+		removeChildren(content);
+	};
+	video.oncontextmenu = function(event) {event.preventDefault();};	
 
-function loadNextImage(index, images_buffer_map) {
+	content.appendChild(video);
+	video.play();
+}
+
+function videoEnded() {
+	console.log('switch state?');
+}
+
+
+function loadNextVideo(index, videos_buffer_map) {
 	/*
 	Method description:
 
-	The 'playlist' variables describes the list of all images to show (already in random order and containing repetitions)
+	The 'playlist' variables describes the list of all videos to show (already in random order and containing repetitions)
 
 	At first, the 'playlist' variable is a list of tuples containing:
-		[ image_id , image_path , dots ]
+		[ video_id , video_path , dots ]
 
-	The goal of this method is to preload (download) the images so that 'playlist' becomes a list of tuples of:
-		[ image_id , "actual image data" , dots ]
+	The goal of this method is to preload (download) the videos so that 'playlist' becomes a list of tuples of:
+		[ video_id , "actual video data" , dots ]
 
 	
 
-	This method loads one image at the specified index. Then, if needed, 
+	This method loads one video at the specified index. Then, if needed, 
 	this method recursively calls itslef with index+1 until the end is reached.
 
-	In order to avoid downloading the same image several times (recall that the playlist contains repetitions), 
-	the 'images_buffer_map' acts as a temporary buffer. It is a map [ image_id --> "actual image data" ]
-	that contains all the already loaded images
+	In order to avoid downloading the same video several times (recall that the playlist contains repetitions), 
+	the 'videos_buffer_map' acts as a temporary buffer. It is a map [ video_id --> "actual video data" ]
+	that contains all the already loaded videos
 	*/
 
 
 
-	if (index == playlist.length) { // All images are loaded	
+	if (index == playlist.length) { // All videos are loaded	
 		$('#progress').attr('class', "progress-bar progress-bar-success");
 
 		// Delayed for 1 second for smoother animations...
 		setTimeout(function() {
-			console.log('Loaded', index, 'images');
+			console.log('Loaded', index, 'videos');
 			resetProgress();
 			showNext();
 		}, 1000);
@@ -374,31 +393,31 @@ function loadNextImage(index, images_buffer_map) {
 
 	var tuple = playlist[index];
 
-	var image_data = images_buffer_map[tuple.id];
-	if (image_data != null) { // Image already on buffer
-		tuple.path = image_data;
+	var video_data = videos_buffer_map[tuple.id];
+	if (video_data != null) { // Video already on buffer
+		tuple.path = video_data;
 
 		incrementProgress();
-		loadNextImage(index+1, images_buffer_map);
+		loadNextVideo(index+1, videos_buffer_map);
 		return;
 	}
 
-	// Download image
+	// Download video
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../images/'.concat(tuple.path), true);
+	xhr.open('GET', '../videos/'.concat(tuple.path), true);
 	xhr.responseType = 'blob';
 	xhr.onload = function(e) {
 		if (this.status == 200) {
 			incrementProgress();
 
-			var myBlob = this.response;	/* image data */
+			var myBlob = this.response;	/* video data */
 
 			tuple.path = myBlob;
 
-			images_buffer_map[tuple.id] = myBlob;  /* put in buffer */
-			loadNextImage(index+1, images_buffer_map);
+			videos_buffer_map[tuple.id] = myBlob;  /* put in buffer */
+			loadNextVideo(index+1, videos_buffer_map);
 		} else {
-			error('Cannot fetch image');
+			error('Cannot fetch video');
 		}
 	}
 	xhr.send();
@@ -406,87 +425,83 @@ function loadNextImage(index, images_buffer_map) {
 
 
 function insertResponse() {
-	/*
-		Insert a user response to the database
-		*/
-		if (!SHOW_DOTS) {
-			dotsReference = emptyDotsResponse();
-			dotsResponse = emptyDotsResponse();
-		}
+	// Insert a user response to the database
+	if (!SHOW_DOTS) {
+		dotsReference = emptyDotsResponse();
+		dotsResponse = emptyDotsResponse();
+	}
 
-		jQuery.ajax({
-			type: "POST",
-			url: '../submit_answer.php',
-			dataType: 'json',
-			data: {
-				userId: USER_ID,		
-				imageId: current.id,
-				userResponse: userResponse,
-				userResponseTime: userResponseTime,
-				dotsReference: dotsReference.join(''),
-				dotsResponse: dotsResponse.join('')
-			},
+	jQuery.ajax({
+		type: "POST",
+		url: '../submit_answer.php',
+		dataType: 'json',
+		data: {
+			userId: USER_ID,		
+			videoId: current.id,
+			userResponse: userResponse,
+			userResponseTime: userResponseTime,
+			dotsReference: dotsReference.join(''),
+			dotsResponse: dotsResponse.join('')
+		},
 
-			success: function (obj, textstatus) {
-				if ('error' in obj) {
-					error(obj.error);
-				}
-			},
+		success: function (obj, textstatus) {
+			if ('error' in obj) {
+				error(obj.error);
+			}
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
-	}
+}
 
-	function insertBreakTime(breakTime) {
-	/*
-		update the 'break_time' field in the corresponding entry of the 'Users' table
-		*/
+function insertBreakTime(breakTime) {
+	// update the 'break_time' field in the corresponding entry of the 'Users' table
 
-		jQuery.ajax({
-			type: "POST",
-			url: '../update_break_time.php',
-			dataType: 'json',
-			data: {
-				userId: USER_ID,		
-				breakTime: breakTime
-			},
+	jQuery.ajax({
+		type: "POST",
+		url: '../update_break_time.php',
+		dataType: 'json',
+		data: {
+			userId: USER_ID,		
+			breakTime: breakTime
+		},
 
-			success: function (obj, textstatus) {
-				if ('error' in obj) {
-					error(obj.error);
-				}
-			},
+		success: function (obj, textstatus) {
+			if ('error' in obj) {
+				error(obj.error);
+			}
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
+}
+
+function removeChildren(node) {
+	while (node.firstChild) {
+		node.removeChild(node.firstChild);
 	}
+}
 
-	function removeChildren(node) {
-		while (node.firstChild) {
-			node.removeChild(node.firstChild);
-		}
-	}
+function emptyDotsResponse() {
+	return ['-','-','-','-','-','-','-','-','-'];
+}
 
-	function emptyDotsResponse() {
-		return ['-','-','-','-','-','-','-','-','-'];
-	}
+function setProperlyFinished() {
+	jQuery.ajax({
+		type: "POST",
+		url: '../set_properly_finished.php',
 
-	function setProperlyFinished() {
-		jQuery.ajax({
-			type: "POST",
-			url: '../set_properly_finished.php',
-
-			success: function (obj, textstatus) {
-				window.onbeforeunload = null;
-				window.location.href = NEXT_URL;
-			},
+		success: function (obj, textstatus) {
+			window.onbeforeunload = null;
+			window.location.href = NEXT_URL;
+		},
 
     	error: function (blob, status, error) { // That means an error in php code, should not happen!
     		console.log("[CRITICAL] " + status + " / " + error);
     	}
     });
-	}
+}
