@@ -57,19 +57,17 @@
   </div>
 
   <div class="row row-top-margin">
-    <div onclick="keyPress(102);" class="col-xs-2">
+    <div onclick="keyPress(102);" class="col-md-2">
       <div class="lead text-center" style='visibility:hidden' id='f_key'><img width='70' src="../img/key_f.png" class="img-responsive center-block"><br>This person is lying</div>
     </div> 
 
-    <div class="col-xs-8">
+    <div class="col-md-8">
       <p class="lead text-center" id='message'>Please wait while the images are loading...</p>
-
       <div id="content" class="lead text-center">
-
-
       </div>
     </div>
-    <div onclick="keyPress(106);" class="col-xs-2">
+
+    <div onclick="keyPress(106);" class="col-md-2">
       <div class="lead text-center" style='visibility:hidden' id='j_key'><img width='70' src="../img/key_j.png" class="img-responsive center-block"><br>This person is <b>not</b> lying</div>
     </div>
   </div>

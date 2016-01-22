@@ -65,7 +65,7 @@
       <div class="lead text-center" style='visibility:hidden' id='f_key'><img width='70' src="../img/key_f.png"><br> Cette personne ment</div>
     </div>
 
-    <div onclick="keyPress(32);" class="col-md-8">    
+    <div class="col-md-8">    
       <p class="lead text-center" id='message'>Veuillez patienter durant le chargement des vidéos... </p>
       <div id="content" class="lead text-center">
       </div>

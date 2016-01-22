@@ -125,7 +125,9 @@ function enterState(nextState) {
 
 			questionStartTime = new Date().getTime();
 
-			videoTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, VIDEO_DURATION);
+			if (VIDEO_DURATION > 0) {
+				videoTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, VIDEO_DURATION);
+			}
 		}
 		break;
 
@@ -176,7 +178,9 @@ function enterState(nextState) {
 function exitState(state) {
 	switch(state) {
 		case states.WAITING_USER_TO_ANSWER: {
-			clearTimeout(videoTimeout);
+			if (VIDEO_DURATION > 0) {
+				clearTimeout(videoTimeout);
+			}
 		}
 		break;
 
