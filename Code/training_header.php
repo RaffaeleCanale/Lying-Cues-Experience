@@ -10,7 +10,6 @@ if (sizeof($_POST) != 5) {
 	exit();
 }
 
-echo TABLE_USERS;
 $sql = "INSERT INTO ".TABLE_USERS." (age, gender, degree, origin_country, residence_country, show_dots) VALUES ('". join("', '",$_POST). "', " . (SHOW_DOTS?"true":"false") . ")";
 
 if ($conn->query($sql) === TRUE) {

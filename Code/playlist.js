@@ -53,7 +53,7 @@ window.onbeforeunload = function () {
 }
 
 function enterState(nextState) {
-	console.log("[STATE]", nextState);
+	// console.log("[STATE]", nextState);
 
 	exitState(currentState);
 	currentState = nextState;
@@ -248,14 +248,14 @@ function keyPress(chCode) {
 	}
 
 	/* tmp */
-	// if (chCode == '98') { // b
-	// 	enterState(states.TAKING_BREAK);
-	// } else if (chCode == '115') {  // s
-	// 	while (playlist.length > 1) {
-	// 		incrementProgress();
-	// 		playlist.pop();
-	// 	}
-	// }
+	if (chCode == '98') { // b
+		enterState(states.TAKING_BREAK);
+	} else if (chCode == '115') {  // s
+		while (playlist.length > 1) {
+			incrementProgress();
+			playlist.pop();
+		}
+	}
 }
 
 function buttonPressed() {

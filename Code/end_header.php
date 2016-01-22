@@ -20,7 +20,7 @@ $query->fetch_assoc;
 $total=$query->num_rows;
 
 $sql = 'SELECT * FROM '.TABLE_ANSWERS.' a'.
-' JOIN '.TABLE_VIDEOS.' v ON a.video_id = v.id'.
+' JOIN '.TABLE_SUBJECTS.' v ON a.video_id = v.id'.
 ' WHERE a.user_id = ' . $_SESSION['userId'] .
 ' AND v.is_lying=a.is_lying';
 
