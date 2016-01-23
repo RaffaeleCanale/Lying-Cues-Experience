@@ -2,6 +2,8 @@
 
 session_start();
 
+
+
 include('session_tracker.php');
 
 if (!$_SESSION['finished']) {    
@@ -13,6 +15,7 @@ if (!$_SESSION['finished']) {
 
 include('db_connection.php'); // Creates a connection $conn
 include('constants.php');
+$redirect_page = END_REDIRECT_PAGE;
 
 $sql = 'SELECT * FROM '.TABLE_ANSWERS.' WHERE user_id = '.$_SESSION['userId'];
 $query = $conn->query($sql) or die('?');
