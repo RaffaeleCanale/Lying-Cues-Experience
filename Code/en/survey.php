@@ -17,7 +17,7 @@
       NEXT_URL = <?php echo '"' . $nextUrl . '"'; ?>;
       BREAK_INTERVAL = <?php echo $break_interval ?>;
       DOTS_DURATION = <?php echo DOTS_DURATION ?>;
-      IMAGE_DURATION = <?php echo IMAGE_DURATION ?>;
+      VIDEO_DURATION = <?php echo VIDEO_DURATION ?>;
       CROSS_DURATION = <?php echo FIXATION_CROSS_DURATION ?>;
       SHOW_DOTS = <?php echo (SHOW_DOTS ? "true" : "false") ?>;
 

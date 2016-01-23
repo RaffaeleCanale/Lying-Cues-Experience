@@ -124,7 +124,7 @@ function enterState(nextState) {
 			setVideo(content, URL.createObjectURL(current.path));
 
 			questionStartTime = new Date().getTime();
-
+			
 			if (VIDEO_DURATION > 0) {
 				videoTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, VIDEO_DURATION);
 			}

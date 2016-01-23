@@ -15,9 +15,9 @@ define('EXPERIENCE_DURATION', SHOW_DOTS ? 30 : 30);
 define('END_REDIRECT_DELAY', 0);
 define('END_REDIRECT_PAGE', 'index.php');
 
-define('TABLE_USERS', 'Users');
-define('TABLE_ANSWERS', 'Answers');
-define('TABLE_SUBJECTS', 'Subjects');
-define('TABLE_TRAINING', 'Training');
+define('TABLE_USERS', 'Users_Videos');
+define('TABLE_ANSWERS', 'Answers_Videos');
+define('TABLE_SUBJECTS', 'Subjects_Videos');
+define('TABLE_TRAINING', 'Training_Videos');
 
 ?>

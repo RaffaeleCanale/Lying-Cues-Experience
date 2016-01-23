@@ -16,7 +16,7 @@ if ($conn->query($sql) === TRUE) {
   $last_id = $conn->insert_id;
   $_SESSION["userId"] = $last_id;
 } else {  
-  # echo mysqli_error($conn). "<br>";
+  // echo mysqli_error($conn). "<br>";
   die('An error occurred, please try again.<br>If this problem persists, contact a webmaster at: <a href="mailto:shs@altervista.org">shs@altervista.org</a>');
 }
 
