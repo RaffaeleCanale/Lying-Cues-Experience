@@ -252,14 +252,14 @@ function keyPress(chCode) {
 	}
 
 	/* tmp */
-	if (chCode == '98') { // b
-		enterState(states.TAKING_BREAK);
-	} else if (chCode == '115') {  // s
-		while (playlist.length > 1) {
-			incrementProgress();
-			playlist.pop();
-		}
-	}
+	// if (chCode == '98') { // b
+	// 	enterState(states.TAKING_BREAK);
+	// } else if (chCode == '115') {  // s
+	// 	while (playlist.length > 1) {
+	// 		incrementProgress();
+	// 		playlist.pop();
+	// 	}
+	// }
 }
 
 function buttonPressed() {
