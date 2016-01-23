@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS `@@USERS@@` (
 	`residence_country` varchar(2) NOT NULL,
 	`properly_finished` boolean NOT NULL,
 	`creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`break_time` bigint NOT NULL,
+	`show_dots` boolean NOT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -32,6 +34,8 @@ CREATE TABLE IF NOT EXISTS `@@ANSWERS@@` (
 	`video_id` int NOT NULL,
 	`is_lying` boolean NOT NULL,
 	`response_time` bigint NOT NULL,
+	`dots_reference` varchar(9) NOT NULL,
+	`dots_answer` varchar(9) NOT NULL,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`),
 	FOREIGN KEY (`video_id`) REFERENCES `Videos` (`id`)

@@ -15,7 +15,7 @@ Upload all the code to the server. You can do so by uploading all the content of
 
 First, you need to prepare the videos to use for the experiment. To do so, go the 'Videos' directory and follow the [instructions](/Videos/README.md).
 
-Once ready, upload all the videos on the server to the directory '/Videos'.
+Once ready, upload all the videos on the server to the directory '/videos'.
 
 ###4. SET UP THE DATABASE
 

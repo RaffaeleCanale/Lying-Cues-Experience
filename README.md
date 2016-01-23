@@ -2,31 +2,30 @@
 
 This is the implementation of a social science experiment testing the participants ability to detect liars. The experiment is presented through a web interface and participants are asked if the presented subjects are lying or not.
 
-This experiment is past of a research lead by a group of researchers at EPFL and UNIL. **TODO: Add links and/or logos**
-
-![EPFL](http://ceat.epfl.ch/files/content/sites/ceat/files/shared/images/menus/ecussons/EPFL.png)
+This experiment is past of a research lead by a group of researchers at EPFL and UNIL.
 
 # The interface
 
-This code provides the interface for several variations of the experiment. For instance, the experiment may present subject using images or videos, it is also possible to add a *dots challenge*\* before each presented subject in order to induce a cognitive load. Many other settings are available (eg. breaks during the experiment, repetitions of the subjects, etc...), see **TODO: Link documentation**
+This version of the experiment presents subjects using short videos with no sound. For the same experiment but using images instead of videos, please refer to the [master branch](https://github.com/RaffaeleCanale/Lying-Cues-Experience/tree/master).
+
+This code provides the interface for several variations of the experiment. Many settings are available such as: including the dots challenge, set a timeout for each question, include one or more breaks, etc... For all the details on the experiment settings, see the [documentation](/Documentation/Constants Definitions.md).
 
 All the users information and results are stored in a database.
 
-The interface is available in English and French. **TODO: And greek?**
+The interface is available in English, French and Greek\*.
 
-\* *With the dots challenge, the participant is shown a pattern of dots on a grid very briefly before each question. The participants must retain the pattern, answer the question and then replace the pattern on an empty grid.*
-
+\* *Greek translation is not complete for the variations including the dots challenge or breaks.*
 
 # The research
 
-This experiment is part of a research trying to define the nature of our ability to detect lies. In fact, by observing the participants accuracy and, more importantly, their response time, this experiment tries to define whether our natural ability to dectect lies is a central (ie. active, trained, slow) process or a modular (ie. passive, innate, fast) process.
+This experiment is part of a research trying to define the nature of our ability to detect lies. In fact, by observing the participants accuracy and, more importantly, their response time, this experiment tries to define whether our natural ability to detect lies is a central (ie. active, trained, slow) process or a modular (ie. passive, innate, fast) process.
 
 Learn more about the experiment and results on the following [report](/Reports/canale.pdf).
 
 
 # Setup
 
-To setup the experiment on a server, follow the instructions **TODO: Link to documentation**
+To setup the experiment on a server, follow these [instructions](/Documentation/README.md).
 
 
 
@@ -37,8 +36,5 @@ To setup the experiment on a server, follow the instructions **TODO: Link to doc
 * The subjects are presented in a pseudo random order. More specifically, the order is random but yet ensures that no two same subjects follow each other.
 * Session tracking: This prevents the users tries to access a page in the wrong order or tries to restart the survey by changing the URL or refreshing the page.
 
-
-### Todos
-
-Index path for the variation (EN + images) is not complete
-Merge videos and images experience somehow
+### TODO
+Add readme for code
