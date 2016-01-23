@@ -1,14 +1,15 @@
 <?php 
 
-session_start();
-
-include('db_connection.php'); // Creates a connection $conn
-include('constants.php');
-
 if (sizeof($_POST) != 5) {
 	header('Location: index.php');
 	exit();
 }
+
+
+session_start();
+
+include('db_connection.php'); // Creates a connection $conn
+include('constants.php');
 
 $sql = "INSERT INTO ".TABLE_USERS." (age, gender, degree, origin_country, residence_country, show_dots) VALUES ('". join("', '",$_POST). "', " . (SHOW_DOTS?"true":"false") . ")";
 
@@ -26,4 +27,4 @@ $_SESSION['training'] = TRUE;
 $_SESSION['finished'] = FALSE;
 $_SESSION['surveying'] = FALSE;
 
- ?>
+?>

@@ -11,13 +11,13 @@ define('NB_BREAKS_SURVEY', SHOW_DOTS ? 1 : 0);
 define('NB_BREAKS_TRAINING', 0);
 define('FIXATION_CROSS_DURATION', TEST_MODE ? 0 : 0);
 define('VIDEO_DURATION', 0);
-define('EXPERIENCE_DURATION', SHOW_DOTS ? 30 : 30);
+define('EXPERIENCE_DURATION', SHOW_DOTS ? 30 : 10);
 define('END_REDIRECT_DELAY', 0);
 define('END_REDIRECT_PAGE', 'index.php');
 
-define('TABLE_USERS', 'Users_Videos');
-define('TABLE_ANSWERS', 'Answers_Videos');
-define('TABLE_SUBJECTS', 'Subjects_Videos');
-define('TABLE_TRAINING', 'Training_Videos');
+define('TABLE_USERS', 'Users');
+define('TABLE_ANSWERS', 'Answers');
+define('TABLE_SUBJECTS', 'Subjects');
+define('TABLE_TRAINING', 'Training');
 
 ?>
