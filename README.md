@@ -4,6 +4,8 @@ This is the implementation of a social science experiment testing the participan
 
 This experiment is past of a research lead by a group of researchers at EPFL and UNIL. **TODO: Add links and/or logos**
 
+![EPFL](http://ceat.epfl.ch/files/content/sites/ceat/files/shared/images/menus/ecussons/EPFL.png)
+
 # The interface
 
 This code provides the interface for several variations of the experiment. For instance, the experiment may present subject using images or videos, it is also possible to add a *dots challenge*\* before each presented subject in order to induce a cognitive load. Many other settings are available (eg. breaks during the experiment, repetitions of the subjects, etc...), see **TODO: Link documentation**
