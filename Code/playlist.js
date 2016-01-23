@@ -353,10 +353,6 @@ function setVideo(content, src) {
 	video.play();
 }
 
-function videoEnded() {
-	console.log('switch state?');
-}
-
 
 function loadNextVideo(index, videos_buffer_map) {
 	/*
