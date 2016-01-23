@@ -107,13 +107,13 @@ function choose_random($array) {
 
 
 if ($_SESSION["training"]) {
-  $sql = "SELECT id, path FROM Training";
+  $sql = "SELECT id, path FROM " . TABLE_TRAINING;
   $repetitions=RPT_TRAINING;
   $nextUrl="ready.php";
   $nb_breaks=NB_BREAKS_TRAINING;
 
 } else {  
-  $sql = "SELECT id, path FROM Images";
+  $sql = "SELECT id, path FROM " . TABLE_SUBJECTS;
   $repetitions=RPT_SURVEY;
   $nextUrl="end.php";
   $nb_breaks=NB_BREAKS_SURVEY;
@@ -125,17 +125,17 @@ if ($result->num_rows <= 0) {
   die('An error occurred (1), please try again.<br>If this problem persists, contact a webmaster at: <a href="mailto:shs@altervista.org">shs@altervista.org</a>');
 }
 
-$videos=array();
+$images=array();
 while($row = $result->fetch_assoc()) {
-  $videos[] = $row;
+  $images[] = $row;
 }
 
 $dots_counts = explode(';', DOTS_COUNTS);
 $dots_per_rep = fillDotsCountArray($repetitions, $dots_counts);
-// Duplicate the video ids
+// Duplicate the image ids
 $playlist=array();
 for ($i = 0; $i < $repetitions; $i++) {
-  foreach ($videos as $id) {
+  foreach ($images as $id) {
     $row = $id;    
     if ($dots_per_rep[$i] < 0) {
       $row['dots'] = choose_random($dots_counts);
@@ -163,7 +163,7 @@ $break_interval = $size / ($nb_breaks + 1);
 
 // Just to be really sure
 //    check playlist size
-if (sizeof($playlist) != sizeof($videos)*$repetitions) {
+if (sizeof($playlist) != sizeof($images)*$repetitions) {
   die('An error occurred (3), please try again.<br>If this problem persists, contact a webmaster at: <a href="mailto:shs@altervista.org">shs@altervista.org</a>');
 }
 //    check that no repetitions occur

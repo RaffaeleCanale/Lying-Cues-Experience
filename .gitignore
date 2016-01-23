@@ -5,11 +5,18 @@
 
 
 # Ignore images and videos
-Subjects
+Videos/*
+!Videos/README.md
+!Videos/generate_list.sh
+Images/*
+!Images/README.md
+!Images/generate_list.sh
 
 # Others
+SQL/database.sql
 Others
 Code/.uploadDates.txt
+Images_tmp
 
 # OS generated files
 .directory

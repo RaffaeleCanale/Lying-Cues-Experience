@@ -1,7 +1,7 @@
 <?php
 include('../constants.php');
 
-$redirect_page = 'index.php?' . (SHOW_DOTS ? 'dots' : 'no_dots');
+$redirect_page = END_REDIRECT_PAGE;
 ?>
 <!DOCTYPE html>
 <html lang="en">

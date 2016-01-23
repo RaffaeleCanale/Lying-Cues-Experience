@@ -124,8 +124,10 @@ function enterState(nextState) {
 			setImage(content, URL.createObjectURL(current.path));
 
 			questionStartTime = new Date().getTime();
-
-			imageTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, IMAGE_DURATION);
+			
+			if (IMAGE_DURATION > 0) {
+				imageTimeout = setTimeout(function() { enterState(states.TIMED_OUT); }, IMAGE_DURATION);
+			}
 		}
 		break;
 
@@ -176,7 +178,9 @@ function enterState(nextState) {
 function exitState(state) {
 	switch(state) {
 		case states.WAITING_USER_TO_ANSWER: {
-			clearTimeout(imageTimeout);
+			if (IMAGE_DURATION > 0) {
+				clearTimeout(imageTimeout);
+			}
 		}
 		break;
 
@@ -333,6 +337,7 @@ function setImage(content, src) {
 
 	content.appendChild(image);
 }
+
 
 
 function loadNextImage(index, images_buffer_map) {
