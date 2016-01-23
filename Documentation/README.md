@@ -1,7 +1,7 @@
 ###0. EXPERIMENT PARAMETERS (optional)
 
 A number of parameters about the experiment as well as the database tables name can be edited.
-To change these parameters, edit the 'Code/constants.php' file. For more detailed information, see the corresponding [documentation](/Documentation/Constants Definitions.txt).
+To change these parameters, edit the 'Code/constants.php' file. For more detailed information, see the corresponding [documentation](/Documentation/Constants Definitions.md).
 
 ###1. DATABASE LOGIN
 

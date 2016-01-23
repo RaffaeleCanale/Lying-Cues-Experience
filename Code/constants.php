@@ -1,5 +1,5 @@
 <?php
-// Read the documentation (Constants Definitions.txt) for more information on these constants.
+// Read the documentation (Constants Definitions.md) for more information on these constants.
 
 define('TEST_MODE', FALSE); 
 define('SHOW_DOTS', FALSE); 
