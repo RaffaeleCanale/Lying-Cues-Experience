@@ -5,11 +5,12 @@
 
 
 # Ignore images and videos
-Videos/Training
-Videos/Truths
-Videos/Lies
-Videos/Upload
-Videos/VideoNamesMap.txt
+Videos/*
+!Videos/README.md
+!Videos/generate_list.sh
+Images/*
+!Images/README.md
+!Images/generate_list.sh
 
 # Others
 SQL/database.sql
