@@ -29,7 +29,7 @@ output="database.sql"
 
 cat "$TABLES_FILE" | 
 sed "s/@@USERS@@/$TABLE_USERS/g" |
-sed "s/@@VIDEOS@@/$TABLE_SUBJECTS/g" |
+sed "s/@@SUBJECTS@@/$TABLE_SUBJECTS/g" |
 sed "s/@@TRAINING@@/$TABLE_TRAINING/g" |
 sed "s/@@ANSWERS@@/$TABLE_ANSWERS/g" > "$output"
 
