@@ -29,14 +29,14 @@ CREATE TABLE IF NOT EXISTS `@@TRAINING@@` (
 CREATE TABLE IF NOT EXISTS `@@ANSWERS@@` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`user_id` int NOT NULL,
-	`subject_id` int NOT NULL,
+	`image_id` int NOT NULL,
 	`is_lying` boolean NOT NULL,
 	`response_time` bigint NOT NULL,
 	`dots_reference` varchar(9) NOT NULL,
 	`dots_answer` varchar(9) NOT NULL,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`user_id`) REFERENCES `@@USERS@@` (`id`),
-	FOREIGN KEY (`subject_id`) REFERENCES `@@SUBJECTS@@` (`id`)
+	FOREIGN KEY (`image_id`) REFERENCES `@@SUBJECTS@@` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
