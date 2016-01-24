@@ -10,7 +10,7 @@ function processDirectory() {
 			extension="mp4"
 		fi
 
-		local name="image$i.$extension"
+		local name="video$i.$extension"
 
 		copy "$file" "$output/$name"
 		echo "$name : $2 : $filename" >> "$namesMapFile"
