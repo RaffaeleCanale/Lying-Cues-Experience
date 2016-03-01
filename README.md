@@ -22,6 +22,7 @@ This experiment is part of a research trying to define the nature of our ability
 
 Learn more about the experiment and results on the following [report](/Reports/canale.pdf).
 
+**_For privacy reasons, the actual videos of the experiment are not available on this repository yet_**.
 
 # Setup
 
