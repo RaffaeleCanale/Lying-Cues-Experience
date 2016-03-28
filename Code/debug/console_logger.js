@@ -14,12 +14,12 @@ function logMessage(message) {
 
 		success: function (obj, textstatus) {
 			if ('error' in obj) {
-				console.error(obj.error);
+				errorOriginal.apply(console, obj.error);
 			}
 		},
 
     	error: function (blob, status, error) {
-    		console.error('Cannot log (' + status + ', ' + error + ')');
+    		errorOriginal.apply(console, 'Cannot log (' + status + ', ' + error + ')');
     	}
     });
 }

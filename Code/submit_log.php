@@ -1,16 +1,11 @@
 <?php
     // Submit a user answer for 1 image
-
     
     header('Content-Type: application/json');
-
     
-    include_once('constants.php');
-    include_once('db_connection.php');
-    
-    
-    
-    
+    include('constants.php');
+    include('db_connection.php');
+          
         
     $sql = "INSERT INTO ".TABLE_LOGS." (user_id, message) VALUES ("
         .$_POST['userId'].", '"
@@ -24,6 +19,5 @@
                 
     $conn->close();
     
-
     echo json_encode($response);
 ?>
