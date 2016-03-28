@@ -22,6 +22,7 @@ TABLE_USERS=$(getConstant "TABLE_USERS")
 TABLE_SUBJECTS=$(getConstant "TABLE_SUBJECTS")
 TABLE_TRAINING=$(getConstant "TABLE_TRAINING")
 TABLE_ANSWERS=$(getConstant "TABLE_ANSWERS")
+TABLE_LOGS=$(getConstant "TABLE_LOGS")
 TABLES_FILE="sql_tables.txt"
 
 output="database.sql"
@@ -31,6 +32,7 @@ cat "$TABLES_FILE" |
 sed "s/@@USERS@@/$TABLE_USERS/g" |
 sed "s/@@SUBJECTS@@/$TABLE_SUBJECTS/g" |
 sed "s/@@TRAINING@@/$TABLE_TRAINING/g" |
+sed "s/@@LOGS@@/$TABLE_LOGS/g" |
 sed "s/@@ANSWERS@@/$TABLE_ANSWERS/g" > "$output"
 
 
