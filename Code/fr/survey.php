@@ -1,6 +1,4 @@
-<?php
-include('../survey_header.php');
-?>
+<?php include('../survey_header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +7,12 @@ include('../survey_header.php');
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="../dots.js"></script>
   <script src="../playlist.js"></script>
-  <?php if (TEST_MODE) echo '<script src="../playlist_auto.js"></script>' ?>
+  <?php if (AUTO_MODE) echo '<script src="../debug/playlist_auto.js"></script>' ?>
+  <?php if (DEBUG_MODE) echo '<script src="../debug/console_logger.js"></script>' ?>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", init, false);
 
-    // First thing called as soon as the page is loaded
-    function init() { 
-
-      // Initialize all the PHP constants for the JavaScript
+    function init() { // First thing called as soon as the page is loaded
       USER_ID = <?php echo '"' . $_SESSION["userId"] . '"'; ?>;
       playlist = <?php echo json_encode($playlist); ?>;
       NEXT_URL = <?php echo '"' . $nextUrl . '"'; ?>;

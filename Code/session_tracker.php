@@ -1,4 +1,9 @@
 <?php
+include('constants.php');
+
+if (DEBUG_MODE) {
+	return;
+}
 
 function startExperience() {
 	$_SESSION['surveying'] = TRUE;

@@ -11,16 +11,26 @@ include('../constants.php');
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style.css">
 
+  <?php if (DEBUG_MODE) echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>' ?>
+  <?php if (DEBUG_MODE) echo '<script src="../debug/console_logger.js"></script>' ?>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", init, false);
 
+    var USER_ID = <?php echo '"' . $_SESSION["userId"] . '"'; ?>;
+
     function init() {
+
       var delay = <?php echo END_REDIRECT_DELAY ?>;
       
       if (delay > 0) {
+        console.log('Redirect delay set in', delay, 'ms');
+
         setTimeout(function() {
+          console.log('Redirecting...')
           window.location.href = "<?php echo $redirect_page ?>";
         }, delay);
+      } else {
+        console.log('No redirect delay set')
       }
     }
   </script>
