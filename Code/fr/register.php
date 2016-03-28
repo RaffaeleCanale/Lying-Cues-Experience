@@ -51,7 +51,7 @@
                         <div class="form-group">
                               <label for="degree" class="col-sm-2 control-label">Diplôme</label>
                               <div class="col-sm-10">
-                                    <select class="form-control" name="degree">
+                                    <select class="form-control" name="degree" id="degree">
                                           <option value="none">Aucun</option>
                                           <option value="baccalaureate">Baccalauréat</option>
                                           <option value="bachelor">Bachelor</option>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                               <label for="origin_country" class="col-sm-2 control-label">Pays d'origine</label>
                               <div class="col-sm-10">
-                                    <select class="form-control" id="countries" name="origin_country">
+                                    <select class="form-control" id="origin_country" name="origin_country">
                                           <?php
                                           $countries = fopen("countries.txt","r");
                                           while($line = fgets($countries,1024))
@@ -80,9 +80,9 @@
                         </div>
 
                         <div class="form-group">
-                              <label for="degree" class="col-sm-2 control-label">Pays de résidence</label>
+                              <label for="residence_country" class="col-sm-2 control-label">Pays de résidence</label>
                               <div class="col-sm-10">
-                                    <select class="form-control" id="countries" name="residence_country">                                          
+                                    <select class="form-control" id="residence_country" name="residence_country">                                          
                                           <?php
                                           $countries = fopen("countries.txt","r");
                                           while($line = fgets($countries,1024))
