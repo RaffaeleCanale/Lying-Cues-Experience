@@ -170,7 +170,7 @@ function enterState(nextState) {
 		break;
 
 		default: {
-			error('Unknown state');
+			setError('Unknown state');
 		}
 	}
 }
@@ -202,8 +202,9 @@ function eventKeyPress(event) {
 }
 
 
-
 function keyPress(chCode) {
+	console.log('Pressed key', chCode);
+
 	switch(currentState) {
 		case states.WAITING_USER_TO_START: {
 			if (chCode == 32) { /* space */
@@ -309,7 +310,7 @@ function saveUserAnswer(isLying) {
 	userResponse = isLying;
 }
 
-function error(e) {
+function setError(e) {
 	currentState = states.ERROR_OCCURRED;
 	console.error("[ERROR] " + e);
 }
@@ -404,7 +405,9 @@ function loadNextVideo(index, videos_buffer_map) {
 
 	// Download video
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../videos/'.concat(tuple.path), true);
+	var url = '../videos/'.concat(tuple.path);
+
+	xhr.open('GET', url, true);
 	xhr.responseType = 'blob';
 	xhr.onload = function(e) {
 		if (this.status == 200) {
@@ -417,9 +420,13 @@ function loadNextVideo(index, videos_buffer_map) {
 			videos_buffer_map[tuple.id] = myBlob;  /* put in buffer */
 			loadNextVideo(index+1, videos_buffer_map);
 		} else {
-			error('Cannot fetch video');
+			setError('Cannot fetch video '
+				+ url + ' (' 
+				+ this.status + ', ' 
+				+ this.statusText + ')');
 		}
 	}
+
 	xhr.send();
 }
 
@@ -446,12 +453,12 @@ function insertResponse() {
 
 		success: function (obj, textstatus) {
 			if ('error' in obj) {
-				error(obj.error);
+				setError(obj.error);
 			}
 		},
 
-    	error: function (blob, status, error) { // That means an error in php code, should not happen!
-    		console.log("[CRITICAL] " + status + " / " + error);
+    	error: function (blob, status, error) {
+    		setError('Cannot submit answer (' + status + ', ' + error + ')');
     	}
     });
 }
@@ -470,12 +477,12 @@ function insertBreakTime(breakTime) {
 
 		success: function (obj, textstatus) {
 			if ('error' in obj) {
-				error(obj.error);
+				setError(obj.error);
 			}
 		},
 
-    	error: function (blob, status, error) { // That means an error in php code, should not happen!
-    		console.log("[CRITICAL] " + status + " / " + error);
+    	error: function (blob, status, error) {
+    		setError('Cannot submit break time (' + status + ', ' + error + ')');
     	}
     });
 }
@@ -500,8 +507,8 @@ function setProperlyFinished() {
 			window.location.href = NEXT_URL;
 		},
 
-    	error: function (blob, status, error) { // That means an error in php code, should not happen!
-    		console.log("[CRITICAL] " + status + " / " + error);
+    	error: function (blob, status, error) { 
+    		setError('Cannot set properly finished (' + status + ', ' + error + ')');
     	}
     });
 }

@@ -18,10 +18,15 @@ videos will be associated with 3 dots and two with 4.
 session_start();
 
 include('session_tracker.php');
-
 include('db_connection.php'); // Creates a connection $conn
 include('constants.php');
 
+if (DEBUG_MODE) {
+  $sql = "INSERT INTO ".TABLE_LOGS." (user_id, message) VALUES ("
+        .$_SESSION['userId'].", '"
+        ."Page: survey (training=". $_SESSION['training'] .")')";
+  $conn->query($sql);
+}
 
 
 /** 
