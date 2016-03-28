@@ -98,7 +98,7 @@
 
                         <div class="form-group">
                               <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" value="Submit" class="btn btn-primary">Υποβολή</button>
+                                    <input type="submit" value="Υποβολή" class="btn btn-primary">
                               </div>
                         </div>
                   </fieldset>

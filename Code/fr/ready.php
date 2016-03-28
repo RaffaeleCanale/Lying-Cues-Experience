@@ -41,7 +41,7 @@ include('../constants.php');
 
     <form action="survey.php">
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Commencer</button>
+        <input type="submit" value="Commencer" class="btn btn-primary">
     </form>
 
   </div>

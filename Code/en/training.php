@@ -38,7 +38,7 @@
 
     <form action="survey.php">
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Start</button>
+        <input type="submit" value="Start" class="btn btn-primary">
     </form>
 
   </div>

@@ -38,7 +38,7 @@
 
     <form action="survey.php">
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Έναρξη</button>
+        <input type="submit" value="Έναρξη" class="btn btn-primary">
     </form>
 
   </div>
