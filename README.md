@@ -35,5 +35,5 @@ To setup the experiment on a server, follow these [instructions](/Documentation/
 * Session tracking: This prevents the users tries to access a page in the wrong order or tries to restart the survey by changing the URL or refreshing the page.
 
 ### TODO
-Add readme for code
-Test images version
+- Add readme for code
+- Test images version
