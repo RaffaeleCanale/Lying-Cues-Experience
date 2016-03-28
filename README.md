@@ -22,6 +22,7 @@ This experiment is part of a research trying to define the nature of our ability
 
 Learn more about the experiment and results on the following [report](/Reports/canale.pdf).
 
+**_For privacy reasons, the actual videos of the experiment are not available on this repository yet_**.
 
 # Setup
 
@@ -35,6 +36,3 @@ To setup the experiment on a server, follow these [instructions](/Documentation/
 * Every subject is presented several times to measure accuracy (typically, 4 repetitions).
 * The subjects are presented in a pseudo random order. More specifically, the order is random but yet ensures that no two same subjects follow each other.
 * Session tracking: This prevents the users tries to access a page in the wrong order or tries to restart the survey by changing the URL or refreshing the page.
-
-### TODO
-Add readme for code
