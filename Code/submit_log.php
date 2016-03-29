@@ -3,8 +3,8 @@
     
     header('Content-Type: application/json');
     
-    include('constants.php');
-    include('db_connection.php');
+    require_once('constants.php');
+    require_once('db_connection.php');
           
         
     $sql = "INSERT INTO ".TABLE_LOGS." (user_id, message) VALUES ("

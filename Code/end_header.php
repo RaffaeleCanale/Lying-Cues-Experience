@@ -2,7 +2,8 @@
 
 session_start();
 
-include('session_tracker.php');
+require_once('session_tracker.php');
+require_once('constants.php');
 
 if (!$_SESSION['finished'] && !DEBUG_MODE) {
 	session_destroy(); 

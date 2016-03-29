@@ -1,4 +1,4 @@
-<?php include('../register_header.php') ?>
+<?php require('../register_header.php') ?>
 <!DOCTYPE HTML> 
 <html>
 <head>

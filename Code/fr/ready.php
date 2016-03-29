@@ -1,6 +1,6 @@
 <?php 
-include('../ready_header.php'); 
-include('../constants.php');
+require('../ready_header.php'); 
+require_once('../constants.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

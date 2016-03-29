@@ -1,6 +1,6 @@
 <?php
-include('../index_header.php');
-include('../constants.php');
+require('../index_header.php');
+require_once('../constants.php');
 ?>
 <!DOCTYPE HTML> 
 <html>

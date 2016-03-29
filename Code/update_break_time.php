@@ -8,8 +8,8 @@ header('Content-Type: application/json');
 $response = array();
 
 if (!$_SESSION["training"]) {
-    include('db_connection.php');
-    include('constants.php');
+    require_once('db_connection.php');
+    require_once('constants.php');
 
     $sql = "UPDATE ".TABLE_USERS." SET break_time='".$_POST['breakTime']."' WHERE id=" . $_SESSION["userId"];
     

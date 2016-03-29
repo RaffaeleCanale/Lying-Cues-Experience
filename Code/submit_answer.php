@@ -4,15 +4,12 @@
     session_start();
     header('Content-Type: application/json');
 
-    include('constants');
-    
-
+    require_once('constants.php');  
     
     $response = array();
 
     if (!$_SESSION["training"]) {
-        include('db_connection.php');
-        include('constants.php');
+        require_once('db_connection.php');
         
         $sql = "INSERT INTO ".TABLE_ANSWERS." (user_id, image_id, is_lying, response_time, dots_reference, dots_answer) VALUES (".
             "'".$_POST['userId']."', ".
