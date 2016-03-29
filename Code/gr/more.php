@@ -1,5 +1,5 @@
 <?php
-include('../constants.php'); 
+require_once('../constants.php'); 
 
 $redirect_page = END_REDIRECT_PAGE;
 ?>

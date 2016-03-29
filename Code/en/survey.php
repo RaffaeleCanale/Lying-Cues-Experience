@@ -1,4 +1,7 @@
-<?php include('../survey_header.php'); ?>
+<?php 
+require('../survey_header.php'); 
+require_once('../constants.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

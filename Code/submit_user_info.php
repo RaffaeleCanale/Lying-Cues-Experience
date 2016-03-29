@@ -1,5 +1,7 @@
 <?php
 
+require_once('constants.php');
+
 $ip = getenv('HTTP_CLIENT_IP')?:
 getenv('HTTP_X_FORWARDED_FOR')?:
 getenv('HTTP_X_FORWARDED')?:

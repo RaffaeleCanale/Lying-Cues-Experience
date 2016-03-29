@@ -4,8 +4,8 @@ session_start();
 
 
 
-include('session_tracker.php');
-
+require_once('session_tracker.php');
+require_once('constants.php');
 
 if (!$_SESSION['finished'] && !DEBUG_MODE) {
 	session_destroy(); 
@@ -13,7 +13,7 @@ if (!$_SESSION['finished'] && !DEBUG_MODE) {
     exit();
 }   
 
-include('db_connection.php'); // Creates a connection $conn
+require_once('db_connection.php'); // Creates a connection $conn
 
 
 if (DEBUG_MODE) {

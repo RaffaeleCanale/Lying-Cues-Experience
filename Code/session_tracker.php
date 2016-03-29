@@ -1,5 +1,5 @@
 <?php
-include('constants.php');
+require_once('constants.php');
 
 if (DEBUG_MODE) {
 	return;
